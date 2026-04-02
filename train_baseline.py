@@ -2,13 +2,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report
 
 df = pd.read_csv("data/matches.csv")
 
-print(df.columns)
-
 df = df.dropna()
-
+model = LogisticRegression(class_weight="balanced")
 features = ["duration", "avg_rank_tier", "lobby_type", "game_mode"]
 
 X = df[features]
@@ -22,3 +21,4 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
+print(classification_report(y_test, y_pred))

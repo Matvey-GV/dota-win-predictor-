@@ -2,11 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("data/matches.csv")
-groups = df.groupby("radiant_win")["duration"].mean()
+groups = df.groupby("game_mode")["duration"].mean()
 
-df["duration"].plot(kind="hist")
+groups.plot(kind="bar")
 
-plt.title("Распределение длительности матчей")
-plt.xlabel("Секунды")
-plt.ylabel("Количество матчей")
+plt.title("Длительность игры в зависимости от режима")
+plt.xlabel("Название режима")
+plt.ylabel("Время")
 plt.show()
